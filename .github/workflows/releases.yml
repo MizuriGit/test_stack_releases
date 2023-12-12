@@ -4,12 +4,15 @@ on:
   pull_request:
     types:
       - closed
+    tags:
+      - 'v*'
+
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   release:
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true && 
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
@@ -18,7 +21,7 @@ jobs:
 
       - name: Release
         run: >-
-          gh release create \"${{ github.head_ref }}\"
+          gh release create ${{ github.head_ref }}
           "CHANGELOG.md"
           --generate-notes
           --title "${{ github.head_ref }}"
