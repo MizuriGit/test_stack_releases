@@ -10,6 +10,7 @@ env:
 jobs:
   release:
     if: github.event.pull_request.merged == true
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,7 +18,7 @@ jobs:
 
       - name: Release
         run: >-
-          gh release create ${{ github.head_ref }}
+          gh release create \"${{ github.head_ref }}\"
           "CHANGELOG.md"
           --generate-notes
           --title "${{ github.head_ref }}"
