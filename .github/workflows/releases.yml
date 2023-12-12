@@ -20,4 +20,4 @@ jobs:
           gh release create ${{ github.ref_name }}
           "CHANGELOG.md"
           --generate-notes
-          --title "${{ github.event.head_commit.message }}"
+          --title "${{ github.ref_name }}"
