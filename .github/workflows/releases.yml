@@ -4,15 +4,13 @@ on:
   pull_request:
     types:
       - closed
-    tags:
-      - 'v*'
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   release:
-    if: github.event.pull_request.merged == true && 
+    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'v')
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
