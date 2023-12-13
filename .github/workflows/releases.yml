@@ -20,7 +20,7 @@ jobs:
       - name: Release
         run: >-
           stack build
-          PATH="`stack path --local-install-root`/test/bin/testReleases-exe"
+          PATH="`stack path --local-install-root`/bin/testReleases-exe"
 
           gh release create ${{ github.head_ref }}
           "$PATH"
