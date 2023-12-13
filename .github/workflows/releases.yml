@@ -17,13 +17,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Build and setup env
+        run: |
+          stack build
+          export RELEASE_PATH="`stack path --local-install-root`/bin/testReleases-exe"
+
+
       - name: Release
         run: >-
-          stack build
-
-          PATH="`stack path --local-install-root`/bin/testReleases-exe"
-
           gh release create ${{ github.head_ref }}
-          "$PATH"
+          "$RELEASE_PATH"
           -F CHANGELOG.md
           --title "${{ github.head_ref }}"
