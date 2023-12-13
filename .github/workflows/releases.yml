@@ -19,7 +19,10 @@ jobs:
 
       - name: Release
         run: >-
+          stack build
+          PATH="`stack path --local-install-root`/test/bin/testReleases-exe"
+
           gh release create ${{ github.head_ref }}
-          "CHANGELOG.md"
-          --generate-notes
+          "$PATH"
+          -F CHANGELOG.md
           --title "${{ github.head_ref }}"
