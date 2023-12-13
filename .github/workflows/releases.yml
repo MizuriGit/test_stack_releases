@@ -6,7 +6,7 @@ on:
       - closed
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  BINARY_NAME: testReleases-exe
 
 jobs:
   release:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Release
         run: |
-          RELEASE_PATH="`stack path --local-install-root`/bin/testReleases-exe"
+          RELEASE_PATH="`stack path --local-install-root`/bin/$BINARY_NAME"
           
           gh release create ${{ github.head_ref }} \
             "$RELEASE_PATH" \
