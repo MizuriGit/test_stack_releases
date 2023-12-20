@@ -41,7 +41,7 @@ jobs:
         run: mdbook build docs/language-doc
 
       - name: Deploy to Pages
-        uses: amesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: ./docs/language-doc/book
 
